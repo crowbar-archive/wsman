@@ -1,6 +1,10 @@
 $:.push File.expand_path('../lib', __FILE__)
 require 'wsman/version'
 
+IGNORED_FILES = %w(
+  .gitignore
+)
+
 Gem::Specification.new do |s|
   s.name        = 'wsman'
   s.version     = Wsman::VERSION
@@ -11,7 +15,7 @@ Gem::Specification.new do |s|
   s.description = 'WS-MAN communication library'
   s.email       = 'tboerger@suse.de'
 
-  s.files         = `git ls-files`.split($/)
+  s.files         = `git ls-files`.split($/).delete_if { |n| IGNORED_FILES.include? n }
   s.executables   = s.files.grep(%r{^bin/}) { |f| File.basename(f) }
   s.test_files    = s.files.grep(%r{^(test|spec|features)/})
   s.require_paths = ['lib']

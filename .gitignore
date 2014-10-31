@@ -6,5 +6,4 @@
 /pkg
 /doc
 
-/*.gem
 /Gemfile.lock
